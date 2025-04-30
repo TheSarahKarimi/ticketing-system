@@ -1,3 +1,4 @@
+import dj_database_url
 from pathlib import Path
 import os
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
@@ -73,6 +74,9 @@ DATABASES = {
     }
 }
 
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
