@@ -1,0 +1,37 @@
+{% for ticket in page_obj %}
+                <div class="row">
+                    <div class="col-2 text-truncate"><strong>{{ ticket.title }}</strong></div>
+                    <div class="col-2">
+                        {% if ticket.priority == 'P1' %}
+                            <span class="text-danger">{{ ticket.get_priority_display }}</span>
+                        {% elif ticket.priority == 'P2' %}
+                            <span class="text-dark">{{ ticket.get_priority_display }}</span>
+                        {% elif ticket.priority == 'P3' %}
+                            <span class="text-secondary">{{ ticket.get_priority_display }}</span>
+                        {% else %}
+                            <span class="text-muted">{{ ticket.get_priority_display }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="col-2">{{ ticket.get_status_display }}</div>
+                    <div class="col-4 text-truncate" style="max-width: 100%;">{{ ticket.desc }}</div>
+                    <div class="col-2">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                ...
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'ticket_detail' ticket.pk %}">View</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ticket_edit' ticket.pk %}">Edit</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ticket_delete' ticket.pk %}">Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            {% empty %}
+                {% if status_filter or priority_filter or sort %}
+                    <div class="text-center py-3 text-muted">No tickets match the selected filters.</div>
+                {% else %}
+                    <div class="text-center py-3 text-muted">You have no tickets yet.</div>
+                {% endif %}
+{% endfor %}

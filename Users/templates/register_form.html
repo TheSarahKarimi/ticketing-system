@@ -1,0 +1,32 @@
+<form method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="col-12">
+      <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+      {{ field }}
+
+      {% if field.errors %}
+      <div class="invalid-feedback d-block">
+        {% for error in field.errors %}
+          {{ error }}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="col-12">
+      <button class="btn btn-primary w-100" type="submit">Register</button>
+    </div>
+
+    {% if form.non_field_errors %}
+    <div class="col-12">
+      <div class="alert alert-danger mt-2">
+        {% for error in form.non_field_errors %}
+          <div>{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </form>

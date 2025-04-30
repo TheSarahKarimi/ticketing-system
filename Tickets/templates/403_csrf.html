@@ -1,0 +1,11 @@
+{% extends 'base_home.html' %}
+
+{% block title %}Security Error{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+  <h2 class="text-danger">Security Warning</h2>
+  <p>CSRF token missing or incorrect. Please go back and try again.</p>
+  <a href="{% url 'login' %}" class="btn btn-primary">Back to Login</a>
+</div>
+{% endblock %}

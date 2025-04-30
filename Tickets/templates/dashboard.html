@@ -1,0 +1,66 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block style %}
+<style>
+    .ticket-card .row {
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+        text-align: center;
+        align-items: center;
+    }
+    .ticket-card .row.header {
+        font-weight: bold;
+        background-color: #f8f9fa;
+    }
+    .ticket-card .row:not(.header):nth-child(odd) {
+        background-color: #fafafa;
+        margin-bottom: 8px;
+    }
+    .text-truncate {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+   
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid px-3 px-md-5 my-5">
+
+    <div class="text-center mb-4">
+        <h1>Welcome, {{ request.user.fullname }}!</h1>
+    </div>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{% url 'create_ticket' %}" class="btn btn-primary">
+            Create a new ticket
+        </a>
+    </div>
+
+    <h2>Your Tickets</h2>
+
+    {% include 'sort_filter.html' %}
+
+    <div class="card ticket-card">
+
+        <div class="card-header fw-bold">
+            <div class="row header">
+                <div class="col-6 col-md-2">Title</div>
+                <div class="col-6 col-md-2">Priority</div>
+                <div class="col-6 col-md-2">Status</div>
+                <div class="col-12 col-md-4 d-none d-md-block">Description</div>
+                <div class="col-12 col-md-2">Actions</div>
+            </div>
+        </div>
+
+        <div class="card-body">      
+            {% include 'ticket_list.html' %}
+        
+        {% include 'pagination.html' %}    
+        </div>
+    </div>
+{% endblock %}

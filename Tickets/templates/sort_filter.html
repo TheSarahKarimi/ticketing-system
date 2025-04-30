@@ -1,0 +1,31 @@
+<form method="get" class="row mb-4 g-2 d-flex flex-column flex-md-row text-center text-md-start">
+    <div class="col-md-3">
+        <select name="status" class="form-select">
+            <option value="">All Statuses</option>
+            <option value="open" {% if status_filter == 'open' %}selected{% endif %}>Open</option>
+            <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>In Progress</option>
+            <option value="closed" {% if status_filter == 'closed' %}selected{% endif %}>Closed</option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select name="priority" class="form-select">
+            <option value="">All Priorities</option>
+            <option value="P1" {% if priority_filter == 'P1' %}selected{% endif %}>Critical</option>
+            <option value="P2" {% if priority_filter == 'P2' %}selected{% endif %}>High</option>
+            <option value="P3" {% if priority_filter == 'P3' %}selected{% endif %}>Medium</option>
+            <option value="P4" {% if priority_filter == 'P4' %}selected{% endif %}>Low</option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select name="sort" class="form-select">
+            <option value="">Newest First</option>
+            <option value="oldest" {% if sort == 'oldest' %}selected{% endif %}>Oldest First</option>
+        </select>
+    </div>
+
+    <div class="col-md-3 d-grid">
+        <button type="submit" class="btn btn-outline-primary">Apply Filters</button>
+    </div>
+</form>

@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg border-bottom shadow-sm" style="background-color: #fafafa;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Ticketing System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
